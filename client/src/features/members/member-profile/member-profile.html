@@ -1,16 +1,70 @@
-@if(member(); as member){
+@if(memberService.member(); as member){
 <div class="flex flex-col gap-3">
   <div class="flex gap-3">
     <span class="font-semibold">Member since:</span>
-    <span>{{ member.created | date: 'longDate' }}</span>
+    <span>{{ member.created | date : "longDate" }}</span>
   </div>
-    <div class="flex gap-3">
+  <div class="flex gap-3">
     <span class="font-semibold">Last active:</span>
-    <span>{{ member.lastActive | date: 'dd MMM yyyy h:mm a' }}</span>
+    <span>{{ member.lastActive | date : "dd MMM yyyy h:mm a" }}</span>
   </div>
   <h3 class="text-lg font-semibold text-primary">
     About {{ member.displayName }}
   </h3>
+  @if(memberService.editMode(); as editMode){
+
+  <form #editForm="ngForm" (ngSubmit)="updateProfile()"class="flex flex-col gap-4 w-full">
+
+    <label class="floating-label">
+      <span class="font-semibold">Display Name</span>
+      <input
+        class="input w-full"
+        name="displayName"
+        [(ngModel)]="editableMember.displayName"
+        placeholder="Display name"
+      />
+    </label>
+
+    <label class="floating-label">
+      <span class="font-semibold">Description</span>
+      <textarea
+        class="textarea w-full"
+        name="description"
+        [(ngModel)]="editableMember.description"
+        placeholder="Description"
+      ></textarea>
+    </label>
+
+        <label class="floating-label">
+      <span class="font-semibold">City</span>
+      <input
+        class="input w-full"
+        name="city"
+        [(ngModel)]="editableMember.city"
+        placeholder="City"
+      />
+    </label>
+
+        <label class="floating-label">
+      <span class="font-semibold">Country</span>
+      <input
+        class="input w-full"
+        name="country"
+        [(ngModel)]="editableMember.country"
+        placeholder="Country"
+      />
+    </label>
+
+    <div class="flex sefl-end">
+      <button 
+      [disabled]="!editForm.dirty"
+      type="submit" class="btn btn-success"  >Submit</button>
+    </div>
+
+  </form>
+
+  }@else{
   <div class="">{{ member.description }}</div>
+  }
 </div>
 }
