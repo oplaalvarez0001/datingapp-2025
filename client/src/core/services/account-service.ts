@@ -38,6 +38,7 @@ export class AccountService {
   logout() {
     console.log('User logged out');
     localStorage.removeItem('user');
+    localStorage.removeItem('filters');
     this.currentUser.set(null);
   }
 }

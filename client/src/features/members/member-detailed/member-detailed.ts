@@ -16,7 +16,7 @@ import { AccountService } from '../../../core/services/account-service';
 
 @Component({
   selector: 'app-member-detailed',
-  imports: [AsyncPipe, RouterLink, RouterLinkActive, RouterOutlet, AgePipe],
+  imports: [ RouterLink, RouterLinkActive, RouterOutlet, AgePipe],
   templateUrl: './member-detailed.html',
   styleUrl: './member-detailed.css',
 })
